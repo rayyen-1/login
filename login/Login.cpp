@@ -12,13 +12,58 @@ struct User {
 	user_as as;
 }pengguna;
 
-void registrasi(User &pengguna);
+void registrasi(User& pengguna);
+void login(User pengguna);
 
 int main() {
-	
-	string usn, pass;
-	registrasi(pengguna);
+	int pil;
+	do {
+		system("cls");
+		cout << "=== FRESHBOX / SAYURGO ===" << endl;
+		cout << "1. Registrasi" << endl;
+		cout << "2. Login" << endl;
+		cout << "3. Keluar" << endl;
+		cout << "Pilih menu : ";
+		cin >> pil;
+
+		switch (pil)
+		{
+		case 1:
+			registrasi(pengguna);
+			break;
+		case 2:
+			login(pengguna);
+			break;
+		case 3:
+			break;
+		}
+	} while (pil != 0);
+
+	return 0;
+}
+
+
+void registrasi(User& pengguna) {
+	system("cls");
+	int pilih;
+	cout << "---- Registrasi sebagai apa? ----" << endl << endl;
+	cout << "1. Customer" << endl;
+	cout << "2. Kurir" << endl;
+	cout << "3. Mitra Tani" << endl;
+	cout << "Pilih: ";
+	cin >> pilih;
+
+	pengguna.as = user_as(pilih);
+	cout << "\n=== REGISTRASI ===" << endl << endl;
+	cout << "Username : "; cin >> pengguna.username;
+	cout << "Password : "; cin >> pengguna.password;
 	cout << "---- Registrasi Berhasil ----" << endl << endl;
+	system("PAUSE");
+}
+
+void login(User pengguna) {
+	system("cls");
+	string usn, pass;
 	cout << "=== LOGIN ===" << endl;
 	cout << "Username: ";
 	cin >> usn;
@@ -45,21 +90,5 @@ int main() {
 	{
 		cout << "Login gagal, username atau password Anda salah." << endl;
 	}
-}
-
-
-void registrasi(User &pengguna) {
-	system("cls");
-	int pilih;
-	cout << "---- Registrasi sebagai apa? ----" << endl << endl;
-	cout << "1. Customer" << endl;
-	cout << "2. Kurir" << endl;
-	cout << "3. Mitra Tani" << endl;
-	cout << "Pilih: ";
-	cin >> pilih;
-
-	pengguna.as = user_as(pilih);
-	cout << "\n=== REGISTRASI ===" << endl << endl;
-	cout << "Username : "; cin >> pengguna.username;
-	cout << "Password : "; cin >> pengguna.password;
+	system("PAUSE");
 }
