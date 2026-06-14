@@ -6,26 +6,60 @@ enum user_as {
 	customer = 1, kurir = 2, mitra = 3
 };
 
-struct user {
+struct User {
 	string username;
 	string password;
 	user_as as;
-}user;
+}pengguna;
 
-void registrasi(string username, string password, user_as as);
-void login();
+void registrasi(User &pengguna);
 
 int main() {
+	
+	string usn, pass;
+	registrasi(pengguna);
+	cout << "---- Registrasi Berhasil ----" << endl << endl;
+	cout << "=== LOGIN ===" << endl;
+	cout << "Username: ";
+	cin >> usn;
+	cout << "Password: ";
+	cin >> pass;
 
+	if (usn == pengguna.username && pass == pengguna.password)
+	{
+		cout << "---- Login berhasil ----" << endl << endl;
+		if (pengguna.as == 1)
+		{
+			cout << "Selamat datang customer" << endl;
+		}
+		else if (pengguna.as == 2)
+		{
+			cout << "Selamat datang kurir" << endl;
+		}
+		else if (pengguna.as == 3)
+		{
+			cout << "Selamat datang mitra tani" << endl;
+		}
+	}
+	else
+	{
+		cout << "Login gagal, username atau password Anda salah." << endl;
+	}
 }
 
 
-void registrasi(string username, string password, user_as as) {
+void registrasi(User &pengguna) {
 	system("cls");
-	cout << "Registrasi sebagai apa?" << endl << endl;
+	int pilih;
+	cout << "---- Registrasi sebagai apa? ----" << endl << endl;
 	cout << "1. Customer" << endl;
+	cout << "2. Kurir" << endl;
+	cout << "3. Mitra Tani" << endl;
+	cout << "Pilih: ";
+	cin >> pilih;
 
-	cout << "=== REGISTRASI ===" << endl << endl;
-	cout << "Username : "; cin >> username;
-	cout << "Password : "; cin >> password;
+	pengguna.as = user_as(pilih);
+	cout << "\n=== REGISTRASI ===" << endl << endl;
+	cout << "Username : "; cin >> pengguna.username;
+	cout << "Password : "; cin >> pengguna.password;
 }
