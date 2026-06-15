@@ -3,7 +3,7 @@
 using namespace std;
 
 enum user_as {
-	none = 0 , customer = 1, kurir = 2, mitra = 3
+	  customer = 1, kurir = 2, mitra = 3
 };
 
 const int MAX_USER = 10;
@@ -12,7 +12,10 @@ int jumlahUser = 0;
 struct User {
 	string username = "";
 	string password = "";
-	user_as as = none;
+	string tanggalLahir;
+	string email;
+	string alamat;
+	user_as as;
 };
 
 User pengguna[MAX_USER];
@@ -51,6 +54,7 @@ int main() {
 void registrasi(User pengguna[], int &jumlahUser) {
 	system("cls");
 
+	char program;
 	if (jumlahUser >= MAX_USER) {
 		cout << "Maaf, jumlah pengguna sudah mencapai batas maksimum." << endl;
 		system("PAUSE");
@@ -69,16 +73,29 @@ void registrasi(User pengguna[], int &jumlahUser) {
 	cout << "\n=== REGISTRASI ===" << endl << endl;
 	cout << "Username : "; cin >> pengguna[jumlahUser].username;
 	cout << "Password : "; cin >> pengguna[jumlahUser].password;
+	cout << "Tanggal Lahir : "; cin >> pengguna[jumlahUser].tanggalLahir;
+	cout << "Email : "; cin >> pengguna[jumlahUser].email;
+	cout << "Alamat : "; cin >> pengguna[jumlahUser].alamat;
 	cout << "---- Registrasi Berhasil ----" << endl << endl;
 	
 	
 	jumlahUser++;
-	system("PAUSE");
+	cout << "kembali ke halaman menu? (y/n): ";
+	cin >> program;
+	if (program == 'y' || program == 'Y')
+	{
+		return;
+	}
+	else
+	{
+		exit(0);
+	}
 }
 
 void login(User pengguna[], int jumlahUser) {
 	system("cls");
 	string usn, pass;
+	char program;
 	cout << "=== LOGIN ===" << endl;
 	cout << "Username: ";
 	cin >> usn;
@@ -111,5 +128,15 @@ void login(User pengguna[], int jumlahUser) {
 	if (!loginSuccess) {
 		cout << "Login gagal, username atau password Anda salah." << endl;
 	}
-		system("PAUSE");
+
+	cout << "kembali ke halaman menu? (y/n): ";
+	cin >> program;
+	if (program == 'y' || program == 'Y')
+	{
+		return;
+	}
+	else
+	{
+		exit(0);
+	}
 }
