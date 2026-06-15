@@ -3,17 +3,22 @@
 using namespace std;
 
 enum user_as {
-	customer = 1, kurir = 2, mitra = 3
+	none = 0 , customer = 1, kurir = 2, mitra = 3
 };
 
-struct User {
-	string username;
-	string password;
-	user_as as;
-}pengguna;
+const int MAX_USER = 10;
+int jumlahUser = 0;
 
-void registrasi(User& pengguna);
-void login(User pengguna);
+struct User {
+	string username = "";
+	string password = "";
+	user_as as = none;
+};
+
+User pengguna[MAX_USER];
+
+void registrasi(User pengguna[], int &jumlahUser);
+void login(User pengguna[], int jumlahUser);
 
 int main() {
 	int pil;
@@ -29,22 +34,29 @@ int main() {
 		switch (pil)
 		{
 		case 1:
-			registrasi(pengguna);
+			registrasi(pengguna, jumlahUser);
 			break;
 		case 2:
-			login(pengguna);
+			login(pengguna, jumlahUser);
 			break;
 		case 3:
 			break;
 		}
-	} while (pil != 0);
+	} while (pil != 3);
 
 	return 0;
 }
 
 
-void registrasi(User& pengguna) {
+void registrasi(User pengguna[], int &jumlahUser) {
 	system("cls");
+
+	if (jumlahUser >= MAX_USER) {
+		cout << "Maaf, jumlah pengguna sudah mencapai batas maksimum." << endl;
+		system("PAUSE");
+		return;
+	}
+
 	int pilih;
 	cout << "---- Registrasi sebagai apa? ----" << endl << endl;
 	cout << "1. Customer" << endl;
@@ -53,15 +65,18 @@ void registrasi(User& pengguna) {
 	cout << "Pilih: ";
 	cin >> pilih;
 
-	pengguna.as = user_as(pilih);
+	pengguna[jumlahUser].as = user_as(pilih);
 	cout << "\n=== REGISTRASI ===" << endl << endl;
-	cout << "Username : "; cin >> pengguna.username;
-	cout << "Password : "; cin >> pengguna.password;
+	cout << "Username : "; cin >> pengguna[jumlahUser].username;
+	cout << "Password : "; cin >> pengguna[jumlahUser].password;
 	cout << "---- Registrasi Berhasil ----" << endl << endl;
+	
+	
+	jumlahUser++;
 	system("PAUSE");
 }
 
-void login(User pengguna) {
+void login(User pengguna[], int jumlahUser) {
 	system("cls");
 	string usn, pass;
 	cout << "=== LOGIN ===" << endl;
@@ -70,25 +85,31 @@ void login(User pengguna) {
 	cout << "Password: ";
 	cin >> pass;
 
-	if (usn == pengguna.username && pass == pengguna.password)
-	{
-		cout << "---- Login berhasil ----" << endl << endl;
-		if (pengguna.as == 1)
+	bool loginSuccess = false;
+
+	for (int i = 0; i <= jumlahUser; i++) {
+		if (usn == pengguna[i].username && pass == pengguna[i].password)
 		{
-			cout << "Selamat datang customer" << endl;
-		}
-		else if (pengguna.as == 2)
-		{
-			cout << "Selamat datang kurir" << endl;
-		}
-		else if (pengguna.as == 3)
-		{
-			cout << "Selamat datang mitra tani" << endl;
-		}
+			cout << "---- Login berhasil ----" << endl << endl;
+			if (pengguna[i].as == 1)
+			{
+				cout << "Selamat datang customer" << endl;
+			}
+			else if (pengguna[i].as == 2)
+			{
+				cout << "Selamat datang kurir" << endl;
+			}
+			else if (pengguna[i].as == 3)
+			{
+				cout << "Selamat datang mitra tani" << endl;
+			}
+			loginSuccess = true;
+			break;
 	}
-	else
-	{
+	}
+
+	if (!loginSuccess) {
 		cout << "Login gagal, username atau password Anda salah." << endl;
 	}
-	system("PAUSE");
+		system("PAUSE");
 }
