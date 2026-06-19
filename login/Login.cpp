@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include "menu.h"
 using namespace std;
 
 enum user_as {
@@ -111,18 +111,21 @@ void login(User pengguna[], int jumlahUser) {
 			if (pengguna[i].as == 1)
 			{
 				cout << "Selamat datang customer" << endl;
+				menuCustomer();
 			}
 			else if (pengguna[i].as == 2)
 			{
 				cout << "Selamat datang kurir" << endl;
+				menuKurir();
 			}
 			else if (pengguna[i].as == 3)
 			{
 				cout << "Selamat datang mitra tani" << endl;
+				menuMitra();
 			}
 			loginSuccess = true;
 			break;
-	}
+		}
 	}
 
 	if (!loginSuccess) {
