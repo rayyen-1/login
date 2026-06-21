@@ -3,7 +3,7 @@
 using namespace std;
 
 enum user_as {
-	  customer = 1, kurir = 2, mitra = 3
+	customer = 1, kurir = 2, mitra = 3
 };
 
 const int MAX_USER = 10;
@@ -20,17 +20,23 @@ struct User {
 
 User pengguna[MAX_USER];
 
-void registrasi(User pengguna[], int &jumlahUser);
+void registrasi(User pengguna[], int& jumlahUser);
 void login(User pengguna[], int jumlahUser);
 
 int main() {
 	int pil;
 	do {
 		system("cls");
-		cout << "=== FRESHBOX / SAYURGO ===" << endl;
-		cout << "1. Registrasi" << endl;
-		cout << "2. Login" << endl;
-		cout << "3. Keluar" << endl;
+		cout << "  +-----------------------------------+" << endl;
+		cout << "  |                                   |" << endl;
+		cout << "  | F R E S H B O X  ~  S A Y U R G O |" << endl;
+		cout << "  |                                   |" << endl;
+		cout << "  +-----------------------------------+" << endl;
+		cout << "  +-----------------------------------+" << endl;
+		cout << "  |   1  |  Registrasi                |" << endl;
+		cout << "  |   2  |  Login                     |" << endl;
+		cout << "  |   3  |  Keluar                    |" << endl;
+		cout << "  +------+----------------------------+" << endl;
 		cout << "Pilih menu : ";
 		cin >> pil;
 
@@ -51,7 +57,7 @@ int main() {
 }
 
 
-void registrasi(User pengguna[], int &jumlahUser) {
+void registrasi(User pengguna[], int& jumlahUser) {
 	system("cls");
 
 	char program;
@@ -77,8 +83,8 @@ void registrasi(User pengguna[], int &jumlahUser) {
 	cout << "Email : "; cin >> pengguna[jumlahUser].email;
 	cout << "Alamat : "; cin >> pengguna[jumlahUser].alamat;
 	cout << "---- Registrasi Berhasil ----" << endl << endl;
-	
-	
+
+
 	jumlahUser++;
 	cout << "kembali ke halaman menu? (y/n): ";
 	cin >> program;
