@@ -96,3 +96,53 @@ void updateProduk() {
     cout << "Produk berhasil diupdate!" << endl << endl;
 
 }
+
+void hapusSemuaProduk()
+{
+    queue.depan = queue.belakang = -1;
+    cout << "=== Semua daftar produk telah dihapus ===" << endl << endl;
+}
+
+void hapusProduk()
+{
+    system("cls");
+    cout << "============= HAPUS PRODUK =============" << endl << endl;
+    if (isEmpty())
+    {
+        cout << "=== Daftar produk masih kosong! ===" << endl << endl;
+        system("pause");
+        return;
+    }
+    for (int i = queue.depan; i <= queue.belakang; i++)
+    {
+        cout << i + 1 << ". " << queue.data[i].namaProduk << " | Stok: " << queue.data[i].stok << " | Harga: Rp " << queue.data[i].harga << endl;
+    }
+    cout << endl;
+    int nomor;
+    cout << "Masukkan nomor produk yang ingin dihapus: ";
+    cin >> nomor;
+    nomor--;
+
+    if (nomor < queue.depan || nomor > queue.belakang)
+    {
+        cout << "Nomor tidak valid!" << endl << endl;
+        system("pause");
+        return;
+    }
+
+    for (int i = nomor; i < queue.belakang; i++)
+    {
+        queue.data[i] = queue.data[i + 1];
+    }
+    queue.belakang--;
+
+    if (queue.belakang < queue.depan)
+    {
+        queue.depan = -1;
+        queue.belakang = -1;
+    }
+
+    cout << endl;
+    cout << "=== Produk berhasil dihapus! ===" << endl << endl;
+    system("pause");
+}
