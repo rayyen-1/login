@@ -3,6 +3,19 @@
 
 using namespace std;
 
+void inputProduk();
+void updateProduk();
+void hapusProduk();
+void invoice();
+void statusPengiriman();
+void informasi();
+void pembelian();
+void tampilProduk();
+void lacakKurir();
+void invo();
+void jadwalPengirim();
+void updateStatus();
+
 void menuMitra();
 void menuCustomer();
 void menuKurir();
@@ -29,6 +42,16 @@ void menuMitra()
             break;
         case 2:
             updateProduk();
+
+            char program;
+            cout << "Kembali ke halaman menu? (y/n): ";
+            cin >> program;
+            if (program == 'y' || program == 'Y') {
+                return;
+            }
+            else {
+                exit(0);
+            }
             break;
         case 3:
             hapusProduk();
@@ -48,12 +71,12 @@ void menuMitra()
         }
     } while (pilih != 7);
 };
-void inputProduk();
-void updateProduk();
-void hapusProduk();
-void invoice();
-void statusPengiriman();
-void informasi();
+void inputProduk() { cout << "Coming soon" << endl; system("PAUSE"); }
+/*void updateProduk() { cout << "Coming soon" << endl; system("PAUSE"); }*/
+void hapusProduk() { cout << "Coming soon" << endl; system("PAUSE"); } 
+void invoice() { cout << "Coming soon" << endl; system("PAUSE"); }
+void statusPengiriman() { cout << "Coming soon" << endl; system("PAUSE"); }
+void informasi() { cout << "Coming soon" << endl; system("PAUSE"); }
 
 void menuCustomer()
 {
@@ -74,7 +97,17 @@ void menuCustomer()
             pembelian();
             break;
         case 2:
-            keranjang();
+            tampilProduk();
+
+            char program;
+            cout << "Kembali ke halaman menu? (y/n): ";
+            cin >> program;
+            if (program == 'y' || program == 'Y') {
+                return;
+            }
+            else {
+                exit(0);
+            }
             break;
         case 3:
             lacakKurir();
@@ -88,10 +121,10 @@ void menuCustomer()
         }
     } while (pil != 5);
 };
-void pembelian();
-void keranjang();
-void lacakKurir();
-void invo();
+void pembelian() { cout << "Coming soon" << endl; system("PAUSE"); }
+/*void keranjang() { cout << "Coming soon" << endl; system("PAUSE"); }*/
+void lacakKurir() { cout << "Coming soon" << endl; system("PAUSE"); }
+void invo() { cout << "Coming soon" << endl; system("PAUSE"); }
 
 void menuKurir()
 {
@@ -118,5 +151,5 @@ void menuKurir()
         }
     } while (plh != 3);
 };
-void jadwalPengirim();
-void updateStatus();
+void jadwalPengirim() { cout << "Coming soon" << endl; system("PAUSE"); }
+void updateStatus() { cout << "Coming soon" << endl; system("PAUSE"); }
