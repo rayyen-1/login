@@ -95,6 +95,7 @@ void updateProduk() {
     cout << endl;
     cout << "Produk berhasil diupdate!" << endl << endl;
 
+    cout << endl;
 }
 
 //izin tes min
