@@ -6,6 +6,16 @@
 
 using namespace std;
 
+Produk daftarProduk[MAX_PRODUK] = {
+    {"Bayam", 5000, 20, SAYUR},
+    {"Apel", 25000, 15, BUAH},
+    {"Wortel", 7000, 30, SAYUR},
+    {"Mangga", 18000, 10, BUAH},
+    {"Jeruk", 15000, 25, BUAH}
+};
+
+int jumlahProduk = 5;
+
 Queue queue;
 
 bool isEmpty() {

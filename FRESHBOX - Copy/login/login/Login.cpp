@@ -100,15 +100,12 @@ void login(User daftarUser[], int jumlahUser) {
 
 	bool loginSuccess = false;
 
-	for (int i = 0; i <= jumlahUser; i++) {
+	for (int i = 0; i < jumlahUser; i++) {
 
 		if (usn == daftarUser[i].username && pass == daftarUser[i].password)
 		{
-			cout << "---- Login berhasil ----" << endl << endl;
-			if (daftarUser[i].as == 1)
-
-		if (usn == daftarUser[i].username && pass == daftarUser[i].password)
-		{
+			loginSuccess = true;
+			userAktif = &daftarUser[i];
 			cout << "---- Login berhasil ----" << endl << endl;
 			if (daftarUser[i].as == 1)
 
@@ -130,10 +127,6 @@ void login(User daftarUser[], int jumlahUser) {
 				cout << "Selamat datang mitra tani" << endl;
 				menuMitra();
 			}
-			loginSuccess = true;
-
-			userAktif = &daftarUser[i];
-
 
 			break;
 		}
@@ -156,5 +149,5 @@ void login(User daftarUser[], int jumlahUser) {
 
 }
 
-}
+
 

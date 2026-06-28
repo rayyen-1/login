@@ -1,11 +1,14 @@
 #include <iostream>
 #include <iomanip>
+#include <ctime>
+#include <cstring>
 using namespace std;
 
 #include "mitra.h"
 #include "menu.h"
 #include "customer.h"
 #include "user.h"
+
 
 
 void invoice() { cout << "Coming soon" << endl; system("PAUSE"); }
@@ -91,40 +94,57 @@ void menuCustomer()
     int pil;
     do
     {
+        time_t timestamp;
+        time(&timestamp);
+        struct tm waktuLokal;
+        localtime_s(&waktuLokal, &timestamp);
+
+        char bufferTanggal[50];
+
+        strftime(bufferTanggal, sizeof(bufferTanggal), "%A, %d %B %Y", &waktuLokal);
+        int lebarKotak = 85;
         system("cls");
-        cout << "              ____                                                    ____                                    " << endl;
-        cout << "            ,'  , `.             ,--,                               ,'  , `.                                  " << endl;
-        cout << "         ,-+-,.' _ |           ,--.'|         ,---,              ,-+-,.' _ |             ,---,          ,--,  " << endl;
-        cout << "      ,-+-. ;   , ||           |  |,      ,-+-. /  |          ,-+-. ;   , ||         ,-+-. /  |       ,'_ /|  " << endl;
-        cout << "     ,--.'|'   |  || ,--.--.   `--'_     ,--.'|'   |         ,--.'|'   |  || ,---.  ,--.'|'   |  .--. |  | :  " << endl;
-        cout << "    |   |  ,', |  |,/       \  ,' ,'|   |   |  ,'' |        |   |  ,', |  |,/     \|   |  ,'' |,'_ /| :  . |  " << endl;
-        cout << "    |   | /  | |--'.--.  .-. | '  | |   |   | /  | |        |   | /  | |--'/    /  |   | /  | ||  ' | |  . .  " << endl;
-        cout << "    |   : |  | ,    \__\/: . . |  | :   |   | |  | |        |   : |  | ,  .    ' / |   | |  | ||  | ' |  | |  " << endl;
-        cout << "    |   : |  |/     ,' .--.; | '  : |__ |   | |  |/         |   : |  |/   ';   /|   | |  |/ : | : ; ; |  ' |  " << endl;
-        cout << "    |   | |`-'     /  /  ,.  | |  | '.'||   | |--'          |   | |`-'    '   |  / |   | |--'  '  :  `--'   \ " << endl;
-        cout << "    |   ;/        ;  :   .'   \;  :    ;|   |/              |   ;/        |   :    |   |/      :  ,      .-./ " << endl;
-        cout << "    '---'         |  ,     .-./|  ,   / '---'               '---'          \   \  /'---'        `--`----' " << endl;
-        cout << "                   `--`---'     ---`-'                                      `----'                            " << endl;
-        cout << "xx----------------------------------------------------------------------------------------------------------x" << endl;
-        int lebarKotak = 67;
-        cout << "xx-----------------------------------x----------------------------------------------------------------------x\n";
 
-        // Menggunakan left dan setw agar teks rata kiri, dan sisa space otomatis diisi spasi
-        cout << "" << "| " << left << setw(lebarKotak - 2) << "Nama: " << " |\n";
-        cout << "" << "| " << left << setw(lebarKotak - 2) << "Alamat: " << " |\n";
+        // 1. Garis pembatas atas
+        cout << "++" << string(lebarKotak, '-') << "++" << endl;
 
-        cout << "| " << left << setw(lebarKotak - 2) << "" << " |\n"; // Baris kosong
-        cout << "xx-----------------------------------x----------------------------------------------------------------------x\n";
+        // 2. Baris Header (Menggunakan strlen untuk char array)
+        int panjangTanggal = strlen(bufferTanggal);
+        int sisaLebarHeader = lebarKotak - panjangTanggal - 2;
 
-        cout << "" << endl;
-        cout << "" << endl;
-        cout << "1. Pembelian" << endl;
-        cout << "2. Keranjang" << endl;
-        cout << "3. Lacak Kurir" << endl;
-        cout << "4. Invoice" << endl;
-        cout << "5. Keluar" << endl;
-        cout << "Pilih menu: ";
+        cout << "|| " << bufferTanggal << right << setw(sisaLebarHeader) << userAktif->username << " ||" << endl;
+
+        // 3. Garis pembatas tengah
+        cout << "++" << string(lebarKotak, '-') << "++" << endl;
+
+        // 4. Bagian Menu
+        string menu[] = {
+            "1. Pembelian",
+            "2. Keranjang",
+            "3. Lacak Kurir",
+            "4. Invoice",
+            "5. Keluar"
+        };
+
+        for (int i = 0; i < 5; i++) {
+            int sisaLebarMenu = lebarKotak - menu[i].length() + 1;
+            cout << "|| " << menu[i] << right << setw(sisaLebarMenu) << " ||" << endl;
+        }
+
+        // 5. Garis pembatas bawah menu
+        cout << "++" << string(lebarKotak, '-') << "++" << endl;
+
+        // 6. Input Pilihan
+        cout << "|| Pilih menu: " << endl;
+        cout << "++" << string(lebarKotak, '-') << "++" << endl;
+        cout << "\033[2A\033[15C";
+
+        // 9. Jalankan input (kursor berkedip di dalam kotak)
         cin >> pil;
+
+        // Setelah input selesai, turunkan kursor kembali ke bawah kotak agar output selanjutnya tidak merusak menu
+        cout << "\033[2B";
+
         switch (pil)
         {
         case 1:
@@ -179,3 +199,5 @@ void menuKurir()
         }
     } while (plh != 3);
 };
+
+

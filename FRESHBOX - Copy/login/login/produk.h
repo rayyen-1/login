@@ -21,6 +21,7 @@ const int MAX_PRODUK = 20;
 extern Produk daftarProduk[MAX_PRODUK];
 extern int jumlahProduk;
 
+
 inline string namaKategori(KategoriProduk k) {
     switch (k) {
     case SAYUR:   return "Sayur";
