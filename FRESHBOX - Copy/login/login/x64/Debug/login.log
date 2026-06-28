@@ -1,0 +1,12 @@
+﻿  Login.cpp
+C:\FRESHBOX\login\login\Login.cpp(5,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  menu.cpp
+C:\FRESHBOX\login\login\menu.cpp(100,17): warning C4129: ' ': unrecognized character escape sequence
+C:\FRESHBOX\login\login\menu.cpp(100,17): warning C4129: '|': unrecognized character escape sequence
+C:\FRESHBOX\login\login\menu.cpp(102,17): warning C4129: '_': unrecognized character escape sequence
+C:\FRESHBOX\login\login\menu.cpp(102,17): warning C4129: '/': unrecognized character escape sequence
+C:\FRESHBOX\login\login\menu.cpp(104,17): warning C4129: ' ': unrecognized character escape sequence
+C:\FRESHBOX\login\login\menu.cpp(105,17): warning C4129: ';': unrecognized character escape sequence
+C:\FRESHBOX\login\login\menu.cpp(106,17): warning C4129: ' ': unrecognized character escape sequence
+  Generating Code...
+  login.vcxproj -> C:\FRESHBOX\login\x64\Debug\login.exe
