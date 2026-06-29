@@ -25,7 +25,6 @@ struct Pembelian {
     ItemKeranjang daftarBarang[MAX_ITEM_KERANJANG];
     int    jumlahBarang = 0;
     int    totalHargaSemua = 0;
-
     bool   isCheckedOut = false;
     string waktuCheckout = "";
 };

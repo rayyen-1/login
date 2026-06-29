@@ -1,5 +1,1 @@
-﻿  Login.cpp
-C:\FRESHBOX - Copy\login\login\Login.cpp(5,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-Login.obj : error LNK2001: unresolved external symbol "struct User * daftarUser" (?daftarUser@@3PAUUser@@A)
-Login.obj : error LNK2001: unresolved external symbol "int jumlahUser" (?jumlahUser@@3HA)
-C:\FRESHBOX - Copy\login\x64\Debug\login.exe : fatal error LNK1120: 2 unresolved externals
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(463,5): error MSB8020: The build tools for v145 (Platform Toolset = 'v145') cannot be found. To build using the v145 build tools, please install v145 build tools.  Alternatively, you may upgrade to the current Visual Studio tools by selecting the Project menu or right-click the solution, and then selecting "Retarget solution".

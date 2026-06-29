@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="customer.cpp" />
+    <ClCompile Include="kurir.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="mitra.cpp" />
@@ -147,6 +148,7 @@
   <ItemGroup>
     <ClInclude Include="beli.h" />
     <ClInclude Include="customer.h" />
+    <ClInclude Include="kurir.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="mitra.h" />
     <ClInclude Include="produk.h" />

@@ -9,6 +9,7 @@ using namespace std;
 #include "customer.h"
 #include "user.h"
 #include "beli.h"
+#include "kurir.h"
 
 
 void invoice() { cout << "Coming soon" << endl; system("PAUSE"); }
@@ -17,9 +18,6 @@ void informasi() { cout << "Coming soon" << endl; system("PAUSE"); }
 
 void lacakKurir() { cout << "Coming soon" << endl; system("PAUSE"); }
 void invo() { cout << "Coming soon" << endl; system("PAUSE"); }
-
-void jadwalPengirim() { cout << "Coming soon" << endl; system("PAUSE"); }
-void updateStatus() { cout << "Coming soon" << endl; system("PAUSE"); }
 
 void menuMitra()
 {
@@ -170,7 +168,7 @@ void menuKurir()
         system("cls");
         cout << "=== MENU UTAMA ===" << endl;
         cout << "1. Jadwal Pengiriman" << endl;
-        cout << "2. Update Status" << endl;
+        cout << "2. Status Pengiriman" << endl;
         cout << "3. Keluar" << endl;
         cout << "Pilih menu: ";
         cin >> plh;
@@ -180,7 +178,7 @@ void menuKurir()
             jadwalPengirim();
             break;
         case 2:
-            updateStatus();
+            statusPengirim();
             break;
         case 3:
             return;
