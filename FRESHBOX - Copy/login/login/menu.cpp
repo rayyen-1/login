@@ -24,18 +24,50 @@ void menuMitra()
     int pilih;
     do
     {
+        time_t timestamp;
+        time(&timestamp);
+        struct tm waktuLokal;
+        localtime_s(&waktuLokal, &timestamp);
+
+        char bufferTanggal[50];
+        strftime(bufferTanggal, sizeof(bufferTanggal), "%A, %d %B %Y", &waktuLokal);
+        int lebarKotak = 85;
         system("cls");
-        cout << "=== MENU UTAMA ===" << endl;
-        cout << "1. Input Produk" << endl;
-        cout << "2. Tampilkan Produk" << endl;
-        cout << "3. Update Produk" << endl;
-        cout << "4. Hapus Produk" << endl;
-        cout << "5. Invoice" << endl;
-        cout << "6. Update Status Pengiriman" << endl;
-        cout << "7. Informasi Pelanggan" << endl;
-        cout << "8. Keluar" << endl;
-        cout << "Pilih menu: ";
+
+        cout << "++" << string(lebarKotak, '-') << "++" << endl;
+
+        int panjangTanggal = strlen(bufferTanggal);
+        int sisaLebarHeader = lebarKotak - panjangTanggal - 2;
+
+        cout << "|| " << bufferTanggal << right << setw(sisaLebarHeader) << userAktif->username << " ||" << endl;
+
+        cout << "++" << string(lebarKotak, '-') << "++" << endl;
+
+        string menu[] = {
+            "1. Input Produk",
+            "2. Tampilkan Produk",
+            "3. Update Produk",
+            "4. Hapus Produk",
+            "5. Invoice",
+            "6. Update Status Pengiriman",
+            "7. Informasi Pelanggan",
+            "8. Keluar"
+        };
+
+        for (int i = 0; i < 8; i++) {
+            int sisaLebarMenu = lebarKotak - menu[i].length() + 1;
+            cout << "|| " << menu[i] << right << setw(sisaLebarMenu) << " ||" << endl;
+        }
+
+        cout << "++" << string(lebarKotak, '-') << "++" << endl;
+
+        cout << "|| Pilih menu: " << endl;
+        cout << "++" << string(lebarKotak, '-') << "++" << endl;
+        cout << "\033[2A\033[15C";
+
         cin >> pilih;
+        cout << "\033[2B"; 
+
         switch (pilih)
         {
         case 1:
@@ -81,7 +113,7 @@ void menuMitra()
             return;
         }
         else {
-        exit(0);
+            exit(0);
         }
     } while (pilih != 8);
 };
@@ -165,20 +197,51 @@ void menuKurir()
     int plh;
     do
     {
+        time_t timestamp;
+        time(&timestamp);
+        struct tm waktuLokal;
+        localtime_s(&waktuLokal, &timestamp);
+
+        char bufferTanggal[50];
+        strftime(bufferTanggal, sizeof(bufferTanggal), "%A, %d %B %Y", &waktuLokal);
+        int lebarKotak = 85;
         system("cls");
-        cout << "=== MENU UTAMA ===" << endl;
-        cout << "1. Jadwal Pengiriman" << endl;
-        cout << "2. Status Pengiriman" << endl;
-        cout << "3. Keluar" << endl;
-        cout << "Pilih menu: ";
+
+        cout << "++" << string(lebarKotak, '-') << "++" << endl;
+
+        int panjangTanggal = strlen(bufferTanggal);
+        int sisaLebarHeader = lebarKotak - panjangTanggal - 2;
+        cout << "|| " << bufferTanggal << right << setw(sisaLebarHeader) << userAktif->username << " ||" << endl;
+
+        cout << "++" << string(lebarKotak, '-') << "++" << endl;
+
+        string menu[] = {
+            "1. Jadwal Pengiriman",
+            "2. Update Status",
+            "3. Keluar"
+        };
+
+        for (int i = 0; i < 3; i++) {
+            int sisaLebarMenu = lebarKotak - menu[i].length() + 1;
+            cout << "|| " << menu[i] << right << setw(sisaLebarMenu) << " ||" << endl;
+        }
+
+        cout << "++" << string(lebarKotak, '-') << "++" << endl;
+
+        cout << "|| Pilih menu: " << endl;
+        cout << "++" << string(lebarKotak, '-') << "++" << endl;
+        cout << "\033[2A\033[15C"; 
+
         cin >> plh;
+        cout << "\033[2B"; 
+
         switch (plh)
         {
         case 1:
             jadwalPengirim();
             break;
         case 2:
-            statusPengirim();
+            updateStatus();
             break;
         case 3:
             return;
