@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include  <iomanip>
 #include "produk.h"
 #include "menu.h"
 #include "mitra.h"
@@ -21,24 +22,39 @@ void inisialisasi() {
 
 void tampilProduk() {
     system("cls");
-    cout << "=== DAFTAR PRODUK FRESHBOX ===" << endl << endl;
+
+    int lebarKotak = 75;
+    int colNo    = 4;
+    int colNama  = 25;
+    int colKat   = 12;
+    int colStok  = 8;
+    int colHarga = 15;
+
+    cout << "++" << string(lebarKotak - 4, '-') << "++" << endl;
+    cout << "|| "
+         << left  << setw(colNo)    << "No"          << " | "
+         << left  << setw(colNama)  << "Nama Produk" << " | "
+         << left  << setw(colKat)   << "Kategori"    << " | "
+         << right << setw(colStok)  << "Stok"        << " | "
+         << right << setw(colHarga) << "Harga"       << " ||" << endl;
+    cout << "++" << string(lebarKotak - 4, '-') << "++" << endl;
 
     if (isEmpty()) {
-        cout << "Queue masih kosong!" << endl << endl;
-        system("PAUSE");
-        return;
+        cout << "|| " << left << setw(lebarKotak - 6) << "Belum ada produk tersedia." << " ||" << endl;
+    } else {
+        for (int i = queue.depan; i <= queue.belakang; i++) {
+            string hargaStr = "Rp " + to_string(queue.data[i].harga);
+            cout << "|| "
+                 << left  << setw(colNo)    << i + 1                                << " | "
+                 << left  << setw(colNama)  << queue.data[i].namaProduk             << " | "
+                 << left  << setw(colKat)   << namaKategori(queue.data[i].kategori) << " | "
+                 << right << setw(colStok)  << queue.data[i].stok                   << " | "
+                 << right << setw(colHarga) << hargaStr                             << " ||" << endl;
+        }
     }
 
-    for (int i = 0; i <= queue.belakang; i++) {
-        cout << i << ". " << queue.data[i].namaProduk << endl;
-        cout << "   Kategori : " << namaKategori(queue.data[i].kategori) << endl;
-        cout << "   Stok     : " << queue.data[i].stok << endl;
-        cout << "   Harga    : Rp " << queue.data[i].harga << endl;
-        cout << endl;
-    }
-
-    
-
+    cout << "++" << string(lebarKotak - 4, '-') << "++" << endl;
+    cout << endl;
 }
 
 void updateProduk() {
@@ -78,6 +94,7 @@ void updateProduk() {
     cout << "Produk berhasil diupdate!" << endl << endl;
 
     char program;
+    cout << "Kembali ke halaman menu? (y/n): ";
     cin >> program;
     if (program == 'y' || program == 'Y') {
         return menuMitra();
