@@ -1,0 +1,5 @@
+﻿  Login.cpp
+C:\FRESHBOX - Copy\login\login\Login.cpp(5,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+Login.obj : error LNK2001: unresolved external symbol "struct User * daftarUser" (?daftarUser@@3PAUUser@@A)
+Login.obj : error LNK2001: unresolved external symbol "int jumlahUser" (?jumlahUser@@3HA)
+C:\FRESHBOX - Copy\login\x64\Debug\login.exe : fatal error LNK1120: 2 unresolved externals
