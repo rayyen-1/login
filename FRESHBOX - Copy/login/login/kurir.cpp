@@ -31,7 +31,7 @@ void statusPengirim() {
         cout << "1. Status pengiriman" << endl;
         cout << "2. Update status" << endl;
         cout << "3. Keluar" << endl;
-        cout << "Pilih menu: ";
+        cout << "Pilih menu: "; 
         cin >> pilih;
 
         switch (pilih)
