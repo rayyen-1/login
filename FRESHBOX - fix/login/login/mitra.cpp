@@ -10,6 +10,7 @@ using namespace std;
 #include "produk.h"
 #include "menu.h"
 #include "mitra.h"
+#include "customer.h"
 
 
 
@@ -403,6 +404,96 @@ void informasi() {
     }
 }
 
+
+Queue listOrder(vector<Queue>& data, Pembelian beli) {
+    Queue orderBaru;
+
+    orderBaru.statusMitra;
+    orderBaru.beli = beli;
+
+    data.push_back(orderBaru);
+
+    return orderBaru;
+}
+
 void statusPengiriman() {
-    
+    int pilih;
+    char program;
+    do
+    {
+        system("cls");
+        cout << "1. Status pesanan" << endl;
+        cout << "2. Update status pesanan" << endl;
+        cout << "3. Keluar" << endl;
+        cout << "Pilih menu: ";
+        cin >> pilih;
+
+        switch (pilih)
+        {
+        case 1:
+            system("cls");
+            cout << "=== DAFTAR STATUS PESANAN PRODUK ===" << endl;
+            if (listMitra.empty()) {
+                cout << "Belum ada data pesanan saat ini." << endl;
+            }
+            else {
+                for (size_t i = 0; i < listMitra.size(); i++) {
+                    cout << i + 1 << ". Pembelian oleh: " << (listMitra)[i].beli.daftarUser->username// sesuaikan struct Pembelian Anda
+                        << " | Status: " << statusToString((listMitra)[i].statusMitra) << endl;
+                }
+            }
+            cout << "========================================" << endl;
+            cout << "kembali ke halaman menu status? (y/n): ";
+            cin >> program;
+            if (program == 'y' || program == 'Y')
+            {
+                return;
+            }
+            break;
+
+        case 2:
+            system("cls");
+            cout << "=== UPDATE STATUS PESANAN PRODUK ===" << endl;
+
+            if (listMitra.empty()) {
+                cout << "Belum ada pesanan untuk produk Anda." << endl;
+                system("PAUSE");
+                return menuMitra();
+            }
+
+            // Tampilkan semua daftar pengiriman yang dipegang kurir
+            for (size_t i = 0; i < listMitra.size(); i++) {
+                cout << i + 1 << ". Pesanan ke-" << i + 1
+                    << " | Status Saat Ini: " << statusToString((listMitra)[i].statusMitra) << endl;
+            }
+
+            int pilihan, statusBaru;
+            cout << "\nPilih nomor pesanan yang ingin di-update: ";
+            cin >> pilihan;
+
+            if (pilihan > 0 && pilihan <= (int)listMitra.size()) {
+                cout << "Pilih Status Baru:\n1. Sedang diproses (Dalam proses pemaketan)\n2. Pesanan diberikan ke kurir\nPilihan status (1/2): ";
+                cin >> statusBaru;
+
+                // Memanggil fungsi asli dari kurir.h (by reference menggunakan index vector)
+                update((listMitra)[pilihan - 1], statusBaru);
+
+                cout << "\nStatus berhasil diperbarui menjadi: " << statusToString((listMitra)[pilihan - 1].statusMitra) << endl;
+            }
+            else {
+                cout << "Pilihan nomor pesanan tidak valid!" << endl;
+            }
+            cout << "kembali ke halaman menu status? (y/n): ";
+            cin >> program;
+            if (program == 'y' || program == 'Y')
+            {
+                return;
+            }
+            break;
+
+        case 3:
+            return menuMitra();
+            break;
+        }
+    } while (pilih != 3);
 }

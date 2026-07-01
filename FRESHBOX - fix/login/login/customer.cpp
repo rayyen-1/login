@@ -21,7 +21,8 @@ int jumlahPembelian;
 void cari() { cout << "Coming soon" << endl; system("PAUSE"); }
 void filter() { cout << "Coming soon" << endl; system("PAUSE"); }
 
-vector<Pengiriman> listKurir; 
+vector<Pengiriman> listKurir;
+vector<Queue> listMitra;
 
 void beli() {
     system("cls");

@@ -32,7 +32,7 @@ void statusPengirim() {
     {
         system("cls");
         cout << "1. Status pengiriman" << endl;
-        cout << "2. Update status" << endl;
+        cout << "2. Update status pengiriman" << endl;
         cout << "3. Keluar" << endl;
         cout << "Pilih menu: ";
         cin >> pilih;
@@ -41,7 +41,7 @@ void statusPengirim() {
         {
         case 1:
             system("cls");
-            cout << "=== DAFTAR STATUS PENGIRIMAN (MITRA) ===" << endl;
+            cout << "=== DAFTAR STATUS PENGIRIMAN ===" << endl;
             if (listKurir.empty()) {
                 cout << "Belum ada data pengiriman saat ini." << endl;
             }
