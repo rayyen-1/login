@@ -25,7 +25,53 @@ void cari() {
 
 
 }
-void filter() { cout << "Coming soon" << endl; system("PAUSE"); }
+void filter() {
+    Mitra produk[MAX_PRODUK_PER_MITRA];
+    
+    int lebarKotak = 75;
+    int colNo = 4;
+    int colNama = 25;
+    int colKat = 12;
+    int colStok = 8;
+    int colHarga = 8;
+
+    cout << "++" << string(lebarKotak - 4, '-') << "++" << endl;
+    cout << "|| "
+        << left << setw(colNo) << "No" << " | "
+        << left << setw(colNama) << "Nama Produk" << " | "
+        << left << setw(colKat) << "Kategori" << " | "
+        << right << setw(colStok) << "Stok" << " | "
+        << right << setw(colHarga) << "Harga" << " ||" << endl;
+    cout << "++" << string(lebarKotak - 4, '-') << "++" << endl;
+
+    bool adaProduk = false;
+    int nomor = 1;
+    for (size_t m = 0; m < listMitra.size(); m++) {
+        for (int i = listMitra[m].depan; i < listMitra[m].belakang; i++) {
+            adaProduk = true;
+            string hargaStr = "Rp " + to_string(listMitra[m].data[i].harga);
+            cout << "|| "
+                << left << setw(colNo) << nomor << " | "
+                << left << setw(colNama) << listMitra[m].data[i].namaProduk << " | "
+                << left << setw(colKat) << namaKategori(listMitra[m].data[i].kategori) << " | "
+                << right << setw(colStok) << listMitra[m].data[i].stok << " | "
+                << right << setw(colHarga) << hargaStr << " ||" << endl;
+            nomor++;
+        }
+    }
+
+    int q;
+    cout << "1. Sayur" << endl;
+    cout << "2. Buah" << endl;
+    cout << "masukkan pilihan: "; cin >> q;
+    for (int i = 1; i < produk->jumlahProdukMitra ; i++)
+    {
+        cout << "|";
+        if (q == produk[i].daftarProdukMitra[i].kategori) {
+            cout << i << produk[i].daftarProdukMitra[i].namaProduk << produk[i].daftarProdukMitra[i].kategori << produk[i].daftarProdukMitra[i].stok << produk[i].daftarProdukMitra[i].harga;
+        }
+    }
+}
 
 vector<Pengiriman> listKurir;
 vector<Queue> listMitra;
