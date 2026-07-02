@@ -1,10 +1,11 @@
 #include <iostream>
 #include <iomanip>
+#include <cstring>
 #include "menu.h"
 #include "mitra.h"
 #include "produk.h"
 #include "kurir.h"
-#include "user.h";
+#include "user.h"
 
 
 using namespace std;
@@ -14,31 +15,47 @@ int jumlahUser = 3;
 User* userAktif = nullptr;
 
 void inisialisasiProduk() {
-	queue.depan = 0;
-	queue.belakang = 4;
-	queue.data[0] = { "Bayam", 5000, 20, SAYUR };
-	queue.data[1] = { "Apel", 25000, 15, BUAH };
-	queue.data[2] = { "Wortel", 7000, 30, SAYUR };
-	queue.data[3] = { "Mangga", 18000, 10, BUAH };
-	queue.data[4] = { "Jeruk", 15000, 25, BUAH };
+	// 1. Buat satu objek Queue baru
+	Queue antreanMitra1;
+	antreanMitra1.depan = 0;
+	antreanMitra1.belakang = 5; // Meng-cover 5 produk (indeks 0 sampai 4)
+
+	// 2. Masukkan data akun mitra dari daftarUser[0] ke dalam struct Queue
+	// Pastikan inisialisasiUser() dipanggil duluan sebelum fungsi ini ya!
+	antreanMitra1.mitra = daftarUser[0];
+
+	// 3. Masukkan data produknya
+	antreanMitra1.data[0] = { "P001", "Bayam", 5000, 20, SAYUR };
+	antreanMitra1.data[1] = { "P002", "Apel", 25000, 15, BUAH };
+	antreanMitra1.data[2] = { "P003", "Wortel", 7000, 30, SAYUR };
+	antreanMitra1.data[3] = { "P004", "Mangga", 18000, 10, BUAH };
+	antreanMitra1.data[4] = { "P005", "Jeruk", 15000, 25, BUAH };
+
+	// Status bawaan (default) mitra
+	antreanMitra1.statusMitra = diproses;
+
+	// 4. Dorong objek Queue tersebut ke dalam vector listMitra
+	listMitra.push_back(antreanMitra1);
 }
 
 void inisialisasiUser() {
-	daftarUser[0] = { "mitra1", "mitra123", "12-04-1995", "mitra.utama@email.com", "Sleman, Yogyakarta", "123456789", mitra};
-	daftarUser[1] = { "kurir1", "kurir123", "25-08-1998", "kurir.anton@email.com", "Depok, Sleman", "234556788", kurir};
-	daftarUser[2] = { "kurir2", "kurir456", "03-11-2000", "kurir.budi@email.com", "Bantul, Yogyakarta", "12345578975", kurir};
+	daftarUser[0] = { "mitra1", "mitra123", "12-04-1995", "mitra.utama@email.com", "Sleman, Yogyakarta", "123456789", mitra };
+	daftarUser[1] = { "kurir1", "kurir123", "25-08-1998", "kurir.anton@email.com", "Depok, Sleman", "234556788", kurir };
+	daftarUser[2] = { "kurir2", "kurir456", "03-11-2000", "kurir.budi@email.com", "Bantul, Yogyakarta", "12345578975", kurir };
 
 }
 
 // GANTI BARIS INI (Taruh di luar fungsi main / global)
 
 
-void registrasi(User daftarUser[], int &jumlahUser);
+void registrasi(User daftarUser[], int& jumlahUser);
 void login(User daftarUser[], int jumlahUser);
 
 int main() {
-	inisialisasiProduk();
+	// inisialisasiProduk() membaca daftarUser[0], jadi inisialisasiUser() wajib
+	// dipanggil lebih dulu (sesuai catatan di komentar inisialisasiProduk()).
 	inisialisasiUser();
+	inisialisasiProduk();
 
 	int pil;
 	do {
@@ -72,7 +89,7 @@ int main() {
 	return 0;
 }
 
-void registrasi(User daftarUser[], int &jumlahUser) {
+void registrasi(User daftarUser[], int& jumlahUser) {
 
 	system("cls");
 
@@ -87,7 +104,7 @@ void registrasi(User daftarUser[], int &jumlahUser) {
 	int lebarKotak = 50;
 	int panjangJudul1 = strlen(" Registrasi sebagai apa? ");
 	cout << "++" << string(lebarKotak, '-') << "++" << endl;
-	cout << "++" << string((lebarKotak-panjangJudul1)/2, '-') << " Registrasi sebagai apa? " << string((lebarKotak - panjangJudul1) / 2, '-') << "-++" << endl;
+	cout << "++" << string((lebarKotak - panjangJudul1) / 2, '-') << " Registrasi sebagai apa? " << string((lebarKotak - panjangJudul1) / 2, '-') << "-++" << endl;
 	cout << "++" << string(lebarKotak, '-') << "++" << endl;
 	string menu_role[] = {
 		   "1. Customer",
@@ -101,17 +118,17 @@ void registrasi(User daftarUser[], int &jumlahUser) {
 	}
 	cout << "++" << string(lebarKotak, '-') << "++" << endl;
 	int panjangPilih = strlen("Pilih: ");
-	cout << "|| Pilih: " << string((lebarKotak - panjangPilih - 1), ' ') << "||" <<endl;
+	cout << "|| Pilih: " << string((lebarKotak - panjangPilih - 1), ' ') << "||" << endl;
 	cout << "++" << string(lebarKotak, '-') << "++" << endl;
 	cout << "\033[2A\033[10C";
 	cin >> pilih;
 	cout << "\033[1B";
 	daftarUser[jumlahUser].as = user_as(pilih);
-	
+
 	int panjangJudul2 = strlen(" REGISTRASI ");
-	cout << "++" << string(((lebarKotak - panjangJudul2) / 2) -1, '-') << " REGISTRASI " << string((lebarKotak - panjangJudul2) / 2, '-') << "-++" << endl;
+	cout << "++" << string(((lebarKotak - panjangJudul2) / 2) - 1, '-') << " REGISTRASI " << string((lebarKotak - panjangJudul2) / 2, '-') << "-++" << endl;
 	cout << "++" << string(lebarKotak, '-') << "++" << endl;
-	
+
 	string menu_registrasi[] = {
 		   "Username : ",
 		   "Password : ",
@@ -162,11 +179,27 @@ void login(User daftarUser[], int jumlahUser) {
 	system("cls");
 	string usn, pass;
 	char program;
-	cout << "=== LOGIN ===" << endl;
-	cout << "Username: ";
+	int lebarKotak = 50;
+	int panjangJudul1 = strlen(" LOGIN ");
+	cout << "++" << string(lebarKotak, '-') << "++" << endl;
+	cout << "++" << string((lebarKotak - panjangJudul1) / 2, ' ') << " LOGIN " << string((lebarKotak - panjangJudul1) / 2, ' ') << "-++" << endl;
+	cout << "++" << string(lebarKotak, '-') << "++" << endl;
+
+	string menu_login[] = {
+		   "Username : ",
+		   "Password : "
+	};
+
+	for (int i = 0; i < 2; i++) {
+		int sisaLebarMenu = lebarKotak - menu_login[i].length() + 1;
+		cout << "|| " << menu_login[i] << right << setw(sisaLebarMenu) << " ||" << endl;
+	}
+	cout << "++" << string(lebarKotak, '-') << "++" << endl;
+	cout << "\033[3A\033[14C";
 	cin >> usn;
-	cout << "Password: ";
+	cout << "\033[14C";
 	cin >> pass;
+
 
 	bool loginSuccess = false;
 
@@ -180,21 +213,18 @@ void login(User daftarUser[], int jumlahUser) {
 			if (daftarUser[i].as == 1)
 
 			{
-				cout << "Selamat datang customer" << endl;
 				menuCustomer();
 			}
 
 			else if (daftarUser[i].as == 2)
 
 			{
-				cout << "Selamat datang kurir" << endl;
 				menuKurir();
 			}
 
 			else if (daftarUser[i].as == 3)
 
 			{
-				cout << "Selamat datang mitra tani" << endl;
 				menuMitra();
 			}
 

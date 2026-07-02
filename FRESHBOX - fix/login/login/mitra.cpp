@@ -4,30 +4,97 @@
 #include <fstream>
 #include <iomanip>
 #include <ctime>
+#include <vector>
 
 using namespace std;
 
-#include "produk.h"
-#include "menu.h"
-#include "mitra.h"
-#include "customer.h"
-
-
+#include "user.h"       
+#include "produk.h"     
+#include "beli.h"       
+#include "mitra.h"      
+#include "customer.h"   
+#include "kurir.h"
+#include "menu.h"       
 
 Queue queue;
 
+vector<Queue> listOrderMitra;
+
+// Mencari index milik mitra yang sedang login di dalam listMitra (katalog produk).
+// Jika mitra ini belum pernah punya katalog (baru registrasi), buatkan entri baru
+// supaya produk yang ditambahkannya langsung tersambung ke listMitra yang dipakai
+// customer untuk belanja (sebelumnya semua fungsi produk memakai variabel global
+// "queue" yang terpisah total dari listMitra, jadi produk yang diinput mitra
+// tidak pernah bisa dibeli oleh customer).
+int cariAtauBuatIndexMitraAktif() {
+    for (size_t i = 0; i < listMitra.size(); i++) {
+        if (listMitra[i].mitra.username == userAktif->username) {
+            return (int)i;
+        }
+    }
+
+    Queue queueBaru;
+    queueBaru.depan = 0;
+    queueBaru.belakang = 0; // 0 = belum ada produk (konsisten dgn konvensi di Login.cpp & beli())
+    queueBaru.statusMitra = diproses;
+    queueBaru.mitra = *userAktif;
+    listMitra.push_back(queueBaru);
+    return (int)listMitra.size() - 1;
+}
+
+string statusToString(Status statusMitra) {
+    if (statusMitra == diproses) {
+        return "Sedang diproses (Dalam proses pemaketan)";
+    }
+    else if (statusMitra == diserahkan_ke_kurir) {
+        return "Pesanan diberikan ke kurir";
+    }
+    return "Status Tidak Diketahui";
+}
+
+// 2. Implementasi fungsi update
+void update(Queue& i, int newStatus) {
+    if (newStatus == 1) {
+        i.statusMitra = diproses;
+    }
+    else if (newStatus == 2) {
+        i.statusMitra = diserahkan_ke_kurir;
+    }
+}
+
+Queue listOrder(vector<Queue>& data, Pembelian beli) {
+    Queue orderBaru;
+
+    orderBaru.depan = -1;
+    orderBaru.belakang = -1;
+    orderBaru.statusMitra = diproses;
+    orderBaru.beli = beli;
+
+    data.push_back(orderBaru);
+
+    return orderBaru;
+}
+
 bool isEmpty() {
-    return (queue.belakang == -1);
+    int idx = cariAtauBuatIndexMitraAktif();
+    return (listMitra[idx].belakang == listMitra[idx].depan);
 }
 
 bool isFull() {
-    return (queue.belakang >= (MAX_QUEUE - 1));
+    int idx = cariAtauBuatIndexMitraAktif();
+    return (listMitra[idx].belakang >= MAX_QUEUE);
 }
 
 void inisialisasi() {
     queue.depan = queue.belakang = -1;
+    int idx = cariAtauBuatIndexMitraAktif();
+    listMitra[idx].depan = 0;
+    listMitra[idx].belakang = 0;
 }
 
+// Menampilkan gabungan katalog produk dari SEMUA mitra. Dipakai customer saat
+// belanja (pembelian() di customer.cpp) supaya produk yang diinput oleh mitra
+// manapun bisa langsung terlihat dan dibeli.
 void tampilProduk() {
     system("cls");
 
@@ -47,17 +114,65 @@ void tampilProduk() {
         << right << setw(colHarga) << "Harga" << " ||" << endl;
     cout << "++" << string(lebarKotak - 4, '-') << "++" << endl;
 
+    bool adaProduk = false;
+    int nomor = 1;
+    for (size_t m = 0; m < listMitra.size(); m++) {
+        for (int i = listMitra[m].depan; i < listMitra[m].belakang; i++) {
+            adaProduk = true;
+            string hargaStr = "Rp " + to_string(listMitra[m].data[i].harga);
+            cout << "|| "
+                << left << setw(colNo) << nomor << " | "
+                << left << setw(colNama) << listMitra[m].data[i].namaProduk << " | "
+                << left << setw(colKat) << namaKategori(listMitra[m].data[i].kategori) << " | "
+                << right << setw(colStok) << listMitra[m].data[i].stok << " | "
+                << right << setw(colHarga) << hargaStr << " ||" << endl;
+            nomor++;
+        }
+    }
+
+    if (!adaProduk) {
+        cout << "|| " << left << setw(lebarKotak - 6) << "Belum ada produk tersedia." << " ||" << endl;
+    }
+
+    cout << "++" << string(lebarKotak - 4, '-') << "++" << endl;
+    cout << endl;
+}
+
+// Menampilkan HANYA produk milik mitra yang sedang login. Dipakai untuk
+// input/update/hapus produk supaya nomor yang ditampilkan sesuai dengan
+// katalog milik mitra itu sendiri.
+void tampilProdukSaya() {
+    system("cls");
+
+    int lebarKotak = 75;
+    int colNo = 4;
+    int colNama = 25;
+    int colKat = 12;
+    int colStok = 8;
+    int colHarga = 8;
+
+    int idx = cariAtauBuatIndexMitraAktif();
+
+    cout << "++" << string(lebarKotak - 4, '-') << "++" << endl;
+    cout << "|| "
+        << left << setw(colNo) << "No" << " | "
+        << left << setw(colNama) << "Nama Produk" << " | "
+        << left << setw(colKat) << "Kategori" << " | "
+        << right << setw(colStok) << "Stok" << " | "
+        << right << setw(colHarga) << "Harga" << " ||" << endl;
+    cout << "++" << string(lebarKotak - 4, '-') << "++" << endl;
+
     if (isEmpty()) {
         cout << "|| " << left << setw(lebarKotak - 6) << "Belum ada produk tersedia." << " ||" << endl;
     }
     else {
-        for (int i = queue.depan; i <= queue.belakang; i++) {
-            string hargaStr = "Rp " + to_string(queue.data[i].harga);
+        for (int i = listMitra[idx].depan; i < listMitra[idx].belakang; i++) {
+            string hargaStr = "Rp " + to_string(listMitra[idx].data[i].harga);
             cout << "|| "
                 << left << setw(colNo) << i + 1 << " | "
-                << left << setw(colNama) << queue.data[i].namaProduk << " | "
-                << left << setw(colKat) << namaKategori(queue.data[i].kategori) << " | "
-                << right << setw(colStok) << queue.data[i].stok << " | "
+                << left << setw(colNama) << listMitra[idx].data[i].namaProduk << " | "
+                << left << setw(colKat) << namaKategori(listMitra[idx].data[i].kategori) << " | "
+                << right << setw(colStok) << listMitra[idx].data[i].stok << " | "
                 << right << setw(colHarga) << hargaStr << " ||" << endl;
         }
     }
@@ -77,7 +192,9 @@ void updateProduk() {
         return;
     }
 
-    tampilProduk();
+    int idx = cariAtauBuatIndexMitraAktif();
+
+    tampilProdukSaya();
     cout << endl;
 
     int nomor;
@@ -85,20 +202,20 @@ void updateProduk() {
     cin >> nomor;
     nomor--;
 
-    if (nomor < queue.depan || nomor > queue.belakang) {
+    if (nomor < listMitra[idx].depan || nomor >= listMitra[idx].belakang) {
         cout << "Nomor tidak valid!" << endl << endl;
         system("PAUSE");
         return;
     }
 
     cout << endl;
-    cout << "Produk : " << queue.data[nomor].namaProduk << endl;
-    cout << "Stok sekarang  : " << queue.data[nomor].stok << endl;
-    cout << "Harga sekarang : Rp " << queue.data[nomor].harga << endl;
+    cout << "Produk : " << listMitra[idx].data[nomor].namaProduk << endl;
+    cout << "Stok sekarang  : " << listMitra[idx].data[nomor].stok << endl;
+    cout << "Harga sekarang : Rp " << listMitra[idx].data[nomor].harga << endl;
     cout << endl;
 
-    cout << "Stok baru  : "; cin >> queue.data[nomor].stok;
-    cout << "Harga baru : "; cin >> queue.data[nomor].harga;
+    cout << "Stok baru  : "; cin >> listMitra[idx].data[nomor].stok;
+    cout << "Harga baru : "; cin >> listMitra[idx].data[nomor].harga;
 
     cout << endl;
     cout << "Produk berhasil diupdate!" << endl << endl;
@@ -123,31 +240,28 @@ void hapusProduk()
         system("pause");
         return;
     }
-    tampilProduk();
+
+    int idx = cariAtauBuatIndexMitraAktif();
+
+    tampilProdukSaya();
     cout << endl;
     int nomor;
     cout << "Masukkan nomor produk yang ingin dihapus: ";
     cin >> nomor;
     nomor--;
 
-    if (nomor < queue.depan || nomor > queue.belakang)
+    if (nomor < listMitra[idx].depan || nomor >= listMitra[idx].belakang)
     {
         cout << "Nomor tidak valid!" << endl << endl;
         system("pause");
         return;
     }
 
-    for (int i = nomor; i < queue.belakang; i++)
+    for (int i = nomor; i < listMitra[idx].belakang - 1; i++)
     {
-        queue.data[i] = queue.data[i + 1];
+        listMitra[idx].data[i] = listMitra[idx].data[i + 1];
     }
-    queue.belakang--;
-
-    if (queue.belakang < queue.depan)
-    {
-        queue.depan = -1;
-        queue.belakang = -1;
-    }
+    listMitra[idx].belakang--;
 
     cout << endl;
     cout << "=== Produk berhasil dihapus! ===" << endl << endl;
@@ -232,47 +346,60 @@ void exportcsv_m() {
     }
 }
 
-void inputProduk() { 
+void inputProduk() {
     system("cls");
     char program;
-        string namaProduk;
-        int stock, harga, kategori;
-        cout << "===INPUT PRODUK===" << endl;
-        cout << "Nama Produk: "; cin >> namaProduk;
-        cout << "Harga: "; cin >> harga;
-        cout << "Stock: "; cin >> stock;
-        cout << "===List Kategori==" << endl;
-        cout << "1. Sayur" << endl;
-        cout << "2. Buah" << endl;
-        cout << "3. Bumbu" << endl;
-        cout << "Masukkan pilihan: "; cin >> kategori;
+    string namaProduk;
+    int stock, harga, kategori;
+    cout << "===INPUT PRODUK===" << endl;
+    cout << "Nama Produk: "; cin >> namaProduk;
+    cout << "Harga: "; cin >> harga;
+    cout << "Stock: "; cin >> stock;
+    cout << "===List Kategori==" << endl;
+    cout << "1. Sayur" << endl;
+    cout << "2. Buah" << endl;
+    cout << "3. Bumbu" << endl;
+    cout << "Masukkan pilihan: "; cin >> kategori;
 
-        if (queue.belakang >= MAX_QUEUE - 1) {
-            cout << "Gagal menambahkan! Produk sudah penuh!" << endl;
-            return;
-        }
+    int idx = cariAtauBuatIndexMitraAktif();
 
-        Produk produkBaru;
-        produkBaru.namaProduk = namaProduk;
-        produkBaru.harga = harga;
-        produkBaru.stok = stock;
+    if (listMitra[idx].belakang >= MAX_QUEUE) {
+        cout << "Gagal menambahkan! Produk sudah penuh!" << endl;
+        return;
+    }
 
-        produkBaru.kategori = static_cast<KategoriProduk>(kategori);
+    Produk produkBaru;
+    produkBaru.namaProduk = namaProduk;
+    produkBaru.harga = harga;
+    produkBaru.stok = stock;
 
-        queue.belakang++; // Naikkan indeks belakang
-        queue.data[queue.belakang] = produkBaru; // Masukkan data ke array dalam queue
+    // Pilihan menu: 1. Sayur, 2. Buah, 3. Bumbu -> KategoriProduk: SAYUR=1, BUAH=2, LAINNYA=4
+    // static_cast langsung ke KategoriProduk salah untuk pilihan 3 (nilai 3 tidak
+    // punya enumerator), sehingga produk "Bumbu" tersimpan dengan kategori tak valid.
+    if (kategori == 1) {
+        produkBaru.kategori = SAYUR;
+    }
+    else if (kategori == 2) {
+        produkBaru.kategori = BUAH;
+    }
+    else {
+        produkBaru.kategori = LAINNYA;
+    }
 
-        cout << "Produk berhasil ditambahkan!" << endl;
+    listMitra[idx].data[listMitra[idx].belakang] = produkBaru; // Masukkan data produk ke katalog mitra ini
+    listMitra[idx].belakang++; // Naikkan jumlah produk
+
+    cout << "Produk berhasil ditambahkan!" << endl;
 
 
-        cout << "Kembali ke halaman menu? (y/n): ";
-        cin >> program;
-        if (program == 'y' || program == 'Y') {
-            return menuMitra();
-        }
-        else {
-            exit(0);
-        }
+    cout << "Kembali ke halaman menu? (y/n): ";
+    cin >> program;
+    if (program == 'y' || program == 'Y') {
+        return menuMitra();
+    }
+    else {
+        exit(0);
+    }
 }
 
 
@@ -358,8 +485,9 @@ void invoice() {
     switch (pilihan) {
     case 1:
         exportcsv_m();
+        break;
     case 2:
-        return menuCustomer();
+        break;
     }
     system("pause");
 }
@@ -382,6 +510,7 @@ void informasi() {
     cout << "+----+------------+-----------------+-----------+--------+--------------+" << endl;
 
     for (int i = 0; i < jumlahPembelian; i++) {
+        if (!daftarPembelian[i].isCheckedOut) continue;
         cout << "| " << left << setw(3) << i + 1
             << "| " << left << setw(11) << daftarPembelian[i].daftarUser->username
             << "| " << left << setw(16) << daftarPembelian[i].daftarUser->alamat
@@ -405,17 +534,6 @@ void informasi() {
 }
 
 
-Queue listOrder(vector<Queue>& data, Pembelian beli) {
-    Queue orderBaru;
-
-    orderBaru.statusMitra;
-    orderBaru.beli = beli;
-
-    data.push_back(orderBaru);
-
-    return orderBaru;
-}
-
 void statusPengiriman() {
     int pilih;
     char program;
@@ -433,13 +551,13 @@ void statusPengiriman() {
         case 1:
             system("cls");
             cout << "=== DAFTAR STATUS PESANAN PRODUK ===" << endl;
-            if (listMitra.empty()) {
+            if (listOrderMitra.empty()) {
                 cout << "Belum ada data pesanan saat ini." << endl;
             }
             else {
-                for (size_t i = 0; i < listMitra.size(); i++) {
-                    cout << i + 1 << ". Pembelian oleh: " << (listMitra)[i].beli.daftarUser->username// sesuaikan struct Pembelian Anda
-                        << " | Status: " << statusToString((listMitra)[i].statusMitra) << endl;
+                for (size_t i = 0; i < listOrderMitra.size(); i++) {
+                    cout << i + 1 << ". Pembelian oleh: " << (listOrderMitra)[i].beli.daftarUser->username// sesuaikan struct Pembelian Anda
+                        << " | Status: " << statusToString((listOrderMitra)[i].statusMitra) << endl;
                 }
             }
             cout << "========================================" << endl;
@@ -455,30 +573,30 @@ void statusPengiriman() {
             system("cls");
             cout << "=== UPDATE STATUS PESANAN PRODUK ===" << endl;
 
-            if (listMitra.empty()) {
+            if (listOrderMitra.empty()) {
                 cout << "Belum ada pesanan untuk produk Anda." << endl;
                 system("PAUSE");
                 return menuMitra();
             }
 
             // Tampilkan semua daftar pengiriman yang dipegang kurir
-            for (size_t i = 0; i < listMitra.size(); i++) {
+            for (size_t i = 0; i < listOrderMitra.size(); i++) {
                 cout << i + 1 << ". Pesanan ke-" << i + 1
-                    << " | Status Saat Ini: " << statusToString((listMitra)[i].statusMitra) << endl;
+                    << " | Status Saat Ini: " << statusToString((listOrderMitra)[i].statusMitra) << endl;
             }
 
             int pilihan, statusBaru;
             cout << "\nPilih nomor pesanan yang ingin di-update: ";
             cin >> pilihan;
 
-            if (pilihan > 0 && pilihan <= (int)listMitra.size()) {
+            if (pilihan > 0 && pilihan <= (int)listOrderMitra.size()) {
                 cout << "Pilih Status Baru:\n1. Sedang diproses (Dalam proses pemaketan)\n2. Pesanan diberikan ke kurir\nPilihan status (1/2): ";
                 cin >> statusBaru;
 
                 // Memanggil fungsi asli dari kurir.h (by reference menggunakan index vector)
-                update((listMitra)[pilihan - 1], statusBaru);
+                update((listOrderMitra)[pilihan - 1], statusBaru);
 
-                cout << "\nStatus berhasil diperbarui menjadi: " << statusToString((listMitra)[pilihan - 1].statusMitra) << endl;
+                cout << "\nStatus berhasil diperbarui menjadi: " << statusToString((listOrderMitra)[pilihan - 1].statusMitra) << endl;
             }
             else {
                 cout << "Pilihan nomor pesanan tidak valid!" << endl;

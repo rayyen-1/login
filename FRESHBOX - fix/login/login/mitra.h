@@ -2,12 +2,13 @@
 #define MITRA_H
 
 #include <vector>
-#include "produk.h"
-#include "mitra.h"
-#include "beli.h"
-#include "customer.h"
+#include <string>
 #include "menu.h"
+#include "produk.h"
 #include "user.h"
+#include "beli.h" // Wajib di sini agar struct Pembelian terbaca
+
+using namespace std;
 
 const int MAX_QUEUE = 20;
 
@@ -26,7 +27,10 @@ struct Queue {
 
 extern Queue queue;
 
+// listMitra      = katalog produk milik masing-masing mitra (dipakai customer utk belanja)
+// listOrderMitra = daftar pesanan yang sudah masuk ke mitra (dipakai utk status pesanan)
 extern vector<Queue> listMitra;
+extern vector<Queue> listOrderMitra;
 string statusToString(Status statusMitra);
 
 Queue listOrder(vector<Queue>& data, Pembelian beli);
@@ -39,10 +43,12 @@ void hapusProduk();
 void invoice();
 void inputProduk();
 void tampilProduk();
+void tampilProdukSaya();
 void informasi();
 void updateProduk();
 void inisialisasi();
 bool isEmpty();
 bool isFull();
+
 
 #endif

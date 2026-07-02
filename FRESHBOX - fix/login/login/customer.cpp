@@ -18,11 +18,19 @@ Pembelian daftarPembelian[MAX_PEMBELIAN];
 int jumlahPembelian;
 
 
-void cari() { cout << "Coming soon" << endl; system("PAUSE"); }
+void cari() { 
+    string nama_produk;
+    cout << "Masukkan nama produk yang ingin dicari : "; cin >> nama_produk;
+
+
+
+}
 void filter() { cout << "Coming soon" << endl; system("PAUSE"); }
 
 vector<Pengiriman> listKurir;
 vector<Queue> listMitra;
+// listOrderMitra didefinisikan bersama listMitra di sini karena keduanya
+// diinisialisasi sebelum dipakai oleh customer.cpp maupun mitra.cpp
 
 void beli() {
     system("cls");
@@ -33,80 +41,89 @@ void beli() {
     cout << "Nama Produk: "; cin >> namaProduk;
 
     bool isKetemu = false;
-    int i;
+    size_t idxMitra = -1;
+    int idxProduk = -1;
 
-    for (i = queue.depan; i < queue.belakang; i++) {
-        if (namaProduk == queue.data[i].namaProduk) {
-            isKetemu = true;
-            break;
+    // Cari produk di dalam antrean (Queue) milik setiap mitra di listMitra
+    for (size_t m = 0; m < listMitra.size(); m++) {
+        for (int i = listMitra[m].depan; i < listMitra[m].belakang; i++) {
+            // listMitra[m].data[i] mengakses struct Produk asli kamu yang ada di dalam queue
+            if (namaProduk == listMitra[m].data[i].namaProduk) {
+                isKetemu = true;
+                idxMitra = m;
+                idxProduk = i;
+                break;
+            }
         }
+        if (isKetemu) break;
     }
 
     if (isKetemu) {
-        cout << "Sisa Produk      : " << queue.data[i].stok << endl;
-        cout << "Harga Produk Rp. : " << queue.data[i].harga << endl;
+        // Ambil referensi ke produk asli kamu tanpa mengubah definisi struct-nya
+        Produk& produkPilihan = listMitra[idxMitra].data[idxProduk];
+
+        cout << "Sisa Produk      : " << produkPilihan.stok << endl;
+        cout << "Harga Produk Rp. : " << produkPilihan.harga << endl;
         cout << "Banyak Pembelian : "; cin >> banyak;
 
-        if (banyak <= queue.data[i].stok) {
-            cout << "Total Harga  : " << queue.data[i].harga * banyak << endl;
-            queue.data[i].stok -= banyak;
+        if (banyak <= produkPilihan.stok) {
+            cout << "Total Harga  : " << produkPilihan.harga * banyak << endl;
+            produkPilihan.stok -= banyak; // Stok di struct asli langsung terpotong
 
             int idxUser = -1;
-            int user = 0;
+            // Cari keranjang belanja aktif milik user saat ini
             for (int j = 0; j < jumlahPembelian; j++) {
-                for (int u = 0; u < jumlahUser; u++) {
-                    if (daftarPembelian[j].daftarUser[u].username == userAktif->username && !daftarPembelian[j].isCheckedOut) {
-                        idxUser = j;
-                        user = u;
-                        break;
-                    }
+                if (daftarPembelian[j].daftarUser[0].username == userAktif->username && !daftarPembelian[j].isCheckedOut) {
+                    idxUser = j;
+                    break;
                 }
             }
 
+            // Jika belum punya keranjang, buat baru
             if (idxUser == -1) {
                 if (jumlahPembelian < MAX_PEMBELIAN) {
                     idxUser = jumlahPembelian;
-                    daftarPembelian[idxUser].daftarUser[user].username = userAktif->username;
+                    daftarPembelian[idxUser].daftarUser[0] = *userAktif;
                     daftarPembelian[idxUser].jumlahBarang = 0;
                     daftarPembelian[idxUser].totalHargaSemua = 0;
-                    jumlahPembelian++; 
+                    daftarPembelian[idxUser].isCheckedOut = false;
+                    jumlahPembelian++;
                 }
                 else {
                     cout << "Maaf, kapasitas data transaksi pembelian sudah penuh!" << endl;
-                    queue.data[i].stok += banyak; 
+                    produkPilihan.stok += banyak;
                     system("PAUSE");
                     return menuCustomer();
                 }
             }
 
+            // Masukkan data barang ke keranjang pembeli
             int idxBarang = daftarPembelian[idxUser].jumlahBarang;
             if (idxBarang < MAX_ITEM_KERANJANG) {
-                daftarPembelian[idxUser].daftarBarang[idxBarang].namaProduk = queue.data[i].namaProduk;
-                daftarPembelian[idxUser].daftarBarang[idxBarang].hargaSatuan = queue.data[i].harga;
+                daftarPembelian[idxUser].daftarBarang[idxBarang].namaProduk = produkPilihan.namaProduk;
+                daftarPembelian[idxUser].daftarBarang[idxBarang].hargaSatuan = produkPilihan.harga;
                 daftarPembelian[idxUser].daftarBarang[idxBarang].banyakPembelian = banyak;
-                daftarPembelian[idxUser].daftarBarang[idxBarang].subTotal = queue.data[i].harga * banyak;
+                daftarPembelian[idxUser].daftarBarang[idxBarang].subTotal = produkPilihan.harga * banyak;
 
                 daftarPembelian[idxUser].totalHargaSemua += daftarPembelian[idxUser].daftarBarang[idxBarang].subTotal;
-
                 daftarPembelian[idxUser].jumlahBarang++;
 
                 cout << "Pembelian berhasil dimasukkan ke keranjang!" << endl;
             }
             else {
-                cout << "Maaf, keranjang Anda sudah penuh (Maksimal jenis barang tercapai)!" << endl;
-                queue.data[i].stok += banyak; 
+                cout << "Maaf, keranjang Anda sudah penuh!" << endl;
+                produkPilihan.stok += banyak;
             }
-
         }
         else {
             cout << "Maaf, stok tidak mencukupi!" << endl;
         }
     }
     else {
-        cout << "Maaf, produk tidak ditemukan di antrean mitra." << endl;
+        cout << "Maaf, produk tidak ditemukan di antrean mitra mana pun." << endl;
     }
 
-    cout << "Kembali ke halaman menu? (y/n): ";
+    cout << "\nKembali ke halaman menu? (y/n): ";
     cin >> program;
     if (program == 'y' || program == 'Y') {
         return menuCustomer();
@@ -157,7 +174,7 @@ void keranjang() {
         int colNama = 30;
         int colJumlah = 23;
         int colHarga = 20;
-         
+
         // Garis Atas
         cout << "++" << string(lebarKotak - 4, '-') << "++" << endl;
 
@@ -172,7 +189,7 @@ void keranjang() {
 
         // Cari index milik user yang sedang aktif
         int idxUser = -1;
-        for (int j = 0; j < jumlahPembelian; j++) {
+        for (int j = 0; j < jumlahPembelian && idxUser == -1; j++) {
             for (int u = 0; u < jumlahUser; u++) {
                 if (daftarPembelian[j].daftarUser[u].username == userAktif->username && !daftarPembelian[j].isCheckedOut) {
                     idxUser = j;
@@ -192,7 +209,7 @@ void keranjang() {
 
             cout << "++" << string(lebarKotak - 4, '-') << "++" << endl;
             cout << "|| " << left << setw(colNama + colJumlah + 3) << "GRAND TOTAL:"
-                << right << setw(colHarga+3) << daftarPembelian[idxUser].totalHargaSemua << " ||" << endl;
+                << right << setw(colHarga + 3) << daftarPembelian[idxUser].totalHargaSemua << " ||" << endl;
         }
         else {
             // Jika tidak ketemu keranjang yang aktif (atau sudah dicheckout semua)
@@ -249,6 +266,8 @@ void keranjang() {
 
             // FIX: Hapus tanda bintang (*) di depan listKurir saat memanggil fungsi
             Pengiriman hasilPengiriman = Jadwal(listKurir, daftarPembelian[idxUser]);
+            // Daftarkan juga pesanan ini ke Mitra supaya muncul di menu "Update Status Pengiriman"-nya
+            Queue hasilOrder = listOrder(listOrderMitra, daftarPembelian[idxUser]);
 
             // ... kode cetak struk kamu ke bawah tetap sama ...
             system("PAUSE");
@@ -389,6 +408,7 @@ void invo() {
     switch (pilihan) {
     case 1:
         exportcsv();
+        break;
     case 2:
         return menuCustomer();
     }
@@ -412,17 +432,17 @@ void lacakKurir() {
         << setw(20) << left << "Status" << endl;
     cout << "-----------------------------------" << endl;
 
-    
 
-        for (size_t i = 0; i < listKurir.size(); i++) {
 
-            if (listKurir[i].beli.daftarUser->username == userAktif->username) {
-                cout
-                    << setw(20) << left << listKurir[i].beli.daftarUser->username
-                    << setw(20) << left << listKurir[i].beli.daftarUser->alamat
-                    << setw(20) << left << statusToString(listKurir[i].status) << endl;
-            }
+    for (size_t i = 0; i < listKurir.size(); i++) {
+
+        if (listKurir[i].beli.daftarUser->username == userAktif->username) {
+            cout
+                << setw(20) << left << listKurir[i].beli.daftarUser->username
+                << setw(20) << left << listKurir[i].beli.daftarUser->alamat
+                << setw(20) << left << statusToString(listKurir[i].status) << endl;
         }
+    }
 
     cout << "-----------------------------------" << endl;
 

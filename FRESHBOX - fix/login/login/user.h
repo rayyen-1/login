@@ -20,7 +20,7 @@ struct User {
 const int MAX_USER = 10;
 extern User daftarUser[MAX_USER];
 extern int jumlahUser;
-extern User *userAktif;
+extern User* userAktif;
 
 
 

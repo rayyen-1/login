@@ -1,9 +1,23 @@
-﻿  Login.cpp
-C:\FRESHBOX - fix\login\login\Login.cpp(7,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\FRESHBOX - fix\login\login\Login.cpp(88,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\FRESHBOX - fix\login\login\Login.cpp(99,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\FRESHBOX - fix\login\login\Login.cpp(103,19): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\FRESHBOX - fix\login\login\Login.cpp(111,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\FRESHBOX - fix\login\login\Login.cpp(126,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\FRESHBOX - fix\login\login\Login.cpp(143,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+﻿  customer.cpp
+C:\FRESHBOX - fix\login\login\customer.cpp(224,31): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\FRESHBOX - fix\login\login\customer.cpp(160,10): warning C4101: 'program': unreferenced local variable
+  kurir.cpp
+  Login.cpp
+C:\FRESHBOX - fix\login\login\Login.cpp(105,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\FRESHBOX - fix\login\login\Login.cpp(116,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\FRESHBOX - fix\login\login\Login.cpp(120,19): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\FRESHBOX - fix\login\login\Login.cpp(128,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\FRESHBOX - fix\login\login\Login.cpp(143,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\FRESHBOX - fix\login\login\Login.cpp(160,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\FRESHBOX - fix\login\login\Login.cpp(183,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\FRESHBOX - fix\login\login\Login.cpp(194,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  menu.cpp
+C:\FRESHBOX - fix\login\login\menu.cpp(32,28): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\FRESHBOX - fix\login\login\menu.cpp(51,31): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\FRESHBOX - fix\login\login\menu.cpp(133,28): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\FRESHBOX - fix\login\login\menu.cpp(149,31): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\FRESHBOX - fix\login\login\menu.cpp(205,28): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\FRESHBOX - fix\login\login\menu.cpp(218,31): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  mitra.cpp
+  Generating Code...
   login.vcxproj -> C:\FRESHBOX - fix\login\x64\Debug\login.exe

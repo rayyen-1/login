@@ -67,7 +67,7 @@ void menuMitra()
             inputProduk();
             break;
         case 2:
-            tampilProduk();
+            tampilProdukSaya();
             cout << "===========================================" << endl;
             int pilihan;
             cout << "1. kembali" << endl;

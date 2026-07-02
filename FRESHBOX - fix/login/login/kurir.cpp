@@ -10,20 +10,6 @@ string statusToString(StatusPengiriman status) {
     return "Tidak Diketahui";
 }
 
-Pengiriman Jadwal(vector<Pengiriman>& dataStorage, Pembelian beli, User kurirSkg) {
-    Pengiriman pengirimanBaru;
-
-    pengirimanBaru.status;
-    pengirimanBaru.beli = beli;
-    pengirimanBaru.kurir = kurirSkg; // Menggunakan kurir hasil acakan
-
-    dataStorage.push_back(pengirimanBaru);
-
-    return pengirimanBaru;
-}
-
-
-
 // Diubah agar Mitra bisa melihat semua status pengiriman saat ini
 void statusPengirim() {
     int pilih;
@@ -84,6 +70,13 @@ void statusPengirim() {
                 cout << "Pilih Status Baru:\n1. Sedang dikirim (Dalam Perjalanan)\n2. Pengiriman selesai\nPilihan status (1/2): ";
                 cin >> statusBaru;
 
+                // Pilihan menu (1/2) tidak sama dengan nilai enum StatusPengiriman
+                // (dalam_perjalanan=1, sedang_proses_packing=2, selesai=3), sehingga
+                // sebelumnya memilih "2. Pengiriman selesai" malah tersimpan sebagai
+                // "Sedang proses packing". Petakan dulu ke nilai enum yang benar.
+                if (statusBaru == 1) statusBaru = dalam_perjalanan;
+                else if (statusBaru == 2) statusBaru = selesai;
+
                 // Memanggil fungsi asli dari kurir.h (by reference menggunakan index vector)
                 updateStatus((listKurir)[pilihan - 1], statusBaru);
 
@@ -111,7 +104,6 @@ void statusPengirim() {
 Pengiriman Jadwal(vector<Pengiriman>& dataStorage, Pembelian beli) {
     Pengiriman pengirimanBaru;
 
-    pengirimanBaru.status;
     pengirimanBaru.beli = beli;
 
     // 1. Cari semua indeks user yang rolenya kurir
