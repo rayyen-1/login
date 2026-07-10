@@ -1,4 +1,0 @@
-﻿  customer.cpp
-C:\FRESHBOX - fix\login\login\customer.cpp(347,31): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\FRESHBOX - fix\login\login\customer.cpp(283,10): warning C4101: 'program': unreferenced local variable
-  login.vcxproj -> C:\FRESHBOX - fix\login\x64\Debug\login.exe
