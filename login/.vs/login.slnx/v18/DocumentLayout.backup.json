@@ -1,0 +1,178 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CFDA9F2F-115A-4477-B23F-63D6EC4C5439}|login\\login.vcxproj|C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\login\\menu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CFDA9F2F-115A-4477-B23F-63D6EC4C5439}|login\\login.vcxproj|solutionrelative:login\\menu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CFDA9F2F-115A-4477-B23F-63D6EC4C5439}|login\\login.vcxproj|C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\login\\kurir.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CFDA9F2F-115A-4477-B23F-63D6EC4C5439}|login\\login.vcxproj|solutionrelative:login\\kurir.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CFDA9F2F-115A-4477-B23F-63D6EC4C5439}|login\\login.vcxproj|C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\login\\kurir.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CFDA9F2F-115A-4477-B23F-63D6EC4C5439}|login\\login.vcxproj|solutionrelative:login\\kurir.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CFDA9F2F-115A-4477-B23F-63D6EC4C5439}|login\\login.vcxproj|C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\login\\mitra.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CFDA9F2F-115A-4477-B23F-63D6EC4C5439}|login\\login.vcxproj|solutionrelative:login\\mitra.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CFDA9F2F-115A-4477-B23F-63D6EC4C5439}|login\\login.vcxproj|C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\login\\mitra.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CFDA9F2F-115A-4477-B23F-63D6EC4C5439}|login\\login.vcxproj|solutionrelative:login\\mitra.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CFDA9F2F-115A-4477-B23F-63D6EC4C5439}|login\\login.vcxproj|C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\login\\Login.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CFDA9F2F-115A-4477-B23F-63D6EC4C5439}|login\\login.vcxproj|solutionrelative:login\\Login.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CFDA9F2F-115A-4477-B23F-63D6EC4C5439}|login\\login.vcxproj|C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\login\\customer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CFDA9F2F-115A-4477-B23F-63D6EC4C5439}|login\\login.vcxproj|solutionrelative:login\\customer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CFDA9F2F-115A-4477-B23F-63D6EC4C5439}|login\\login.vcxproj|C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\login\\beli.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CFDA9F2F-115A-4477-B23F-63D6EC4C5439}|login\\login.vcxproj|solutionrelative:login\\beli.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "mitra.h",
+              "DocumentMoniker": "C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\login\\mitra.h",
+              "RelativeDocumentMoniker": "login\\mitra.h",
+              "ToolTip": "C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\login\\mitra.h",
+              "RelativeToolTip": "login\\mitra.h",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAAB8AAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-07-12T16:39:12.322Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "kurir.h",
+              "DocumentMoniker": "C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\login\\kurir.h",
+              "RelativeDocumentMoniker": "login\\kurir.h",
+              "ToolTip": "C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\login\\kurir.h",
+              "RelativeToolTip": "login\\kurir.h",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-07-12T15:55:31.599Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "kurir.cpp",
+              "DocumentMoniker": "C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\login\\kurir.cpp",
+              "RelativeDocumentMoniker": "login\\kurir.cpp",
+              "ToolTip": "C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\login\\kurir.cpp",
+              "RelativeToolTip": "login\\kurir.cpp",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAAADgAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-07-12T14:14:43.585Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Login.cpp",
+              "DocumentMoniker": "C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\login\\Login.cpp",
+              "RelativeDocumentMoniker": "login\\Login.cpp",
+              "ToolTip": "C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\login\\Login.cpp",
+              "RelativeToolTip": "login\\Login.cpp",
+              "ViewState": "AgIAAGMBAAAAAAAAAAAqwHsBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-07-12T15:46:28.026Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "mitra.cpp",
+              "DocumentMoniker": "C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\login\\mitra.cpp",
+              "RelativeDocumentMoniker": "login\\mitra.cpp",
+              "ToolTip": "C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\login\\mitra.cpp",
+              "RelativeToolTip": "login\\mitra.cpp",
+              "ViewState": "AgIAAFwCAAAAAAAAAAAqwIUCAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-07-12T14:23:03.404Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "customer.cpp",
+              "DocumentMoniker": "C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\login\\customer.cpp",
+              "RelativeDocumentMoniker": "login\\customer.cpp",
+              "ToolTip": "C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\login\\customer.cpp",
+              "RelativeToolTip": "login\\customer.cpp",
+              "ViewState": "AgIAADABAAAAAAAAAAAawEEBAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-07-12T12:48:25.983Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "menu.cpp",
+              "DocumentMoniker": "C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\login\\menu.cpp",
+              "RelativeDocumentMoniker": "login\\menu.cpp",
+              "ToolTip": "C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\login\\menu.cpp",
+              "RelativeToolTip": "login\\menu.cpp",
+              "ViewState": "AgIAAIoAAAAAAAAAAAAqwJgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-07-12T14:08:14.45Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "beli.h",
+              "DocumentMoniker": "C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\login\\beli.h",
+              "RelativeDocumentMoniker": "login\\beli.h",
+              "ToolTip": "C:\\Users\\nadya\\Documents\\Kuliah\\Struktur Data\\final project\\New folder (5)\\FRESHBOX - FIX\\login\\login\\beli.h",
+              "RelativeToolTip": "login\\beli.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-07-12T12:47:52.782Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

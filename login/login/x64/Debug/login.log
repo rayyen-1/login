@@ -1,0 +1,27 @@
+﻿  Login.cpp
+C:\Users\nadya\Documents\Kuliah\Struktur Data\final project\New folder (5)\FRESHBOX - FIX\login\login\Login.cpp(178,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\nadya\Documents\Kuliah\Struktur Data\final project\New folder (5)\FRESHBOX - FIX\login\login\Login.cpp(189,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\nadya\Documents\Kuliah\Struktur Data\final project\New folder (5)\FRESHBOX - FIX\login\login\Login.cpp(193,19): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\nadya\Documents\Kuliah\Struktur Data\final project\New folder (5)\FRESHBOX - FIX\login\login\Login.cpp(208,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\nadya\Documents\Kuliah\Struktur Data\final project\New folder (5)\FRESHBOX - FIX\login\login\Login.cpp(219,26): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\nadya\Documents\Kuliah\Struktur Data\final project\New folder (5)\FRESHBOX - FIX\login\login\Login.cpp(230,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\nadya\Documents\Kuliah\Struktur Data\final project\New folder (5)\FRESHBOX - FIX\login\login\Login.cpp(262,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\nadya\Documents\Kuliah\Struktur Data\final project\New folder (5)\FRESHBOX - FIX\login\login\Login.cpp(273,22): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\nadya\Documents\Kuliah\Struktur Data\final project\New folder (5)\FRESHBOX - FIX\login\login\Login.cpp(293,28): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\nadya\Documents\Kuliah\Struktur Data\final project\New folder (5)\FRESHBOX - FIX\login\login\Login.cpp(314,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\nadya\Documents\Kuliah\Struktur Data\final project\New folder (5)\FRESHBOX - FIX\login\login\Login.cpp(345,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\nadya\Documents\Kuliah\Struktur Data\final project\New folder (5)\FRESHBOX - FIX\login\login\Login.cpp(372,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  customer.cpp
+C:\Users\nadya\Documents\Kuliah\Struktur Data\final project\New folder (5)\FRESHBOX - FIX\login\login\customer.cpp(291,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  kurir.cpp
+  menu.cpp
+C:\Users\nadya\Documents\Kuliah\Struktur Data\final project\New folder (5)\FRESHBOX - FIX\login\login\menu.cpp(32,28): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\nadya\Documents\Kuliah\Struktur Data\final project\New folder (5)\FRESHBOX - FIX\login\login\menu.cpp(51,31): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\nadya\Documents\Kuliah\Struktur Data\final project\New folder (5)\FRESHBOX - FIX\login\login\menu.cpp(72,17): warning C4101: 'pilihan': unreferenced local variable
+C:\Users\nadya\Documents\Kuliah\Struktur Data\final project\New folder (5)\FRESHBOX - FIX\login\login\menu.cpp(138,28): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\nadya\Documents\Kuliah\Struktur Data\final project\New folder (5)\FRESHBOX - FIX\login\login\menu.cpp(154,31): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\nadya\Documents\Kuliah\Struktur Data\final project\New folder (5)\FRESHBOX - FIX\login\login\menu.cpp(210,28): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\nadya\Documents\Kuliah\Struktur Data\final project\New folder (5)\FRESHBOX - FIX\login\login\menu.cpp(223,31): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  mitra.cpp
+  Generating Code...
+  login.vcxproj -> C:\Users\nadya\Documents\Kuliah\Struktur Data\final project\New folder (5)\FRESHBOX - FIX\login\x64\Debug\login.exe
